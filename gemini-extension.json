@@ -1,0 +1,12 @@
+{
+  "name": "chartsy",
+  "version": "1.0.0",
+  "description": "Live SaaS revenue and growth analytics for AI agents: MRR, churn, revenue, refunds, at-risk customers, goals, site traffic and signups from Stripe, Paddle, Polar, Lemon Squeezy, Creem, Freemius and custom sources. Bundles the chartsy skill and the hosted, read-only Chartsy MCP server.",
+  "contextFileName": "skills/chartsy/SKILL.md",
+  "mcpServers": {
+    "chartsy": {
+      "httpUrl": "https://mcp.chartsy.app/mcp",
+      "description": "Official Chartsy MCP server (hosted, streamable HTTP, read-only). Authorizes via OAuth on first connection: Gemini CLI opens a browser to sign in to Chartsy; no token or local install required."
+    }
+  }
+}

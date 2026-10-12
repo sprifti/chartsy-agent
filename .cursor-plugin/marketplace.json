@@ -1,0 +1,19 @@
+{
+  "name": "chartsy",
+  "owner": { "name": "Chartsy", "email": "support@chartsy.app" },
+  "metadata": { "description": "Chartsy SaaS analytics for AI agents" },
+  "plugins": [
+    {
+      "name": "chartsy",
+      "source": "./",
+      "version": "1.0.0",
+      "description": "Live SaaS revenue and growth analytics for AI agents: MRR, churn, revenue, refunds, at-risk customers, goals, site traffic and signups from Stripe, Paddle, Polar, Lemon Squeezy, Creem, Freemius and custom sources. Bundles the chartsy skill and the hosted, read-only Chartsy MCP server.",
+      "homepage": "https://chartsy.app",
+      "repository": "https://github.com/sprifti/chartsy-agent",
+      "logo": "assets/logo.png",
+      "category": "data",
+      "tags": ["analytics", "saas", "revenue", "mrr", "churn"],
+      "skills": ["./skills/chartsy"]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "chartsy": { "type": "http", "url": "https://mcp.chartsy.app/mcp" }
+  }
+}

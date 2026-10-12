@@ -1,0 +1,10 @@
+{
+  "name": "chartsy",
+  "version": "1.0.0",
+  "description": "Live SaaS revenue and growth analytics for AI agents: MRR, churn, revenue, refunds, at-risk customers, goals, site traffic and signups from Stripe, Paddle, Polar, Lemon Squeezy, Creem, Freemius and custom sources. Bundles the chartsy skill and the hosted, read-only Chartsy MCP server.",
+  "author": { "name": "Chartsy", "email": "support@chartsy.app", "url": "https://chartsy.app" },
+  "homepage": "https://chartsy.app",
+  "repository": "https://github.com/sprifti/chartsy-agent",
+  "keywords": ["chartsy","saas-analytics","mrr","churn","revenue","subscriptions","stripe","paddle","web-analytics","ai-agent","mcp"],
+  "skills": ["./skills/chartsy"]
+}
