@@ -63,13 +63,44 @@ The skill needs the MCP server connected in the same agent. Add
 
 ### Any other MCP client
 Use [`mcp.json`](mcp.json), or point the client at `https://mcp.chartsy.app/mcp`
-(streamable HTTP).
+(streamable HTTP, OAuth sign-in).
 
-If a client can't run OAuth, go to **Settings → Claude & MCP** in Chartsy, generate a
-token, and send it as a header:
+### Clients that only run local (stdio) servers
+Older clients can't connect to a hosted server directly. Bridge to it with
+[`mcp-remote`](https://www.npmjs.com/package/mcp-remote), which handles the OAuth
+sign-in in your browser:
+```json
+{
+  "mcpServers": {
+    "chartsy": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.chartsy.app/mcp"]
+    }
+  }
+}
 ```
-Authorization: Bearer <your-token>
-```
+
+### Agents that run without a browser (servers, cron jobs, CI)
+OAuth needs someone to click **Approve** in a browser. For an agent running unattended,
+such as OpenClaw on a VPS, a scheduled job or a CI pipeline, use a personal token instead:
+
+1. In Chartsy, go to **Settings → Claude & MCP** → **Generate token**. It's shown once,
+   so copy it then.
+2. Store it as a secret (e.g. `CHARTSY_MCP_TOKEN`). Never commit it.
+3. Send it on every request:
+   ```
+   Authorization: Bearer <your-token>
+   ```
+   For example with Claude Code:
+   ```bash
+   claude mcp add --transport http -s user chartsy https://mcp.chartsy.app/mcp \
+     --header "Authorization: Bearer $CHARTSY_MCP_TOKEN"
+   ```
+   Or through `mcp-remote`: `npx -y mcp-remote https://mcp.chartsy.app/mcp --header "Authorization: Bearer ${CHARTSY_MCP_TOKEN}"`
+
+Tokens last a year and can be revoked on the same tab. An unattended agent uses up ChartsyAI
+questions like any other client, one per tool call, so schedule it sensibly. A daily
+`get_daily_snapshot` is one question a day.
 
 ---
 
