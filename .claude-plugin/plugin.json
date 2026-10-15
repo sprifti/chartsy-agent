@@ -6,5 +6,5 @@
   "homepage": "https://chartsy.app",
   "repository": "https://github.com/sprifti/chartsy-agent",
   "keywords": ["chartsy","saas-analytics","mrr","churn","revenue","subscriptions","stripe","paddle","web-analytics","ai-agent","mcp"],
-  "skills": ["./skills/chartsy"]
+  "skills": ["./skills/chartsy", "./skills/chartsy-growth-loop"]
 }

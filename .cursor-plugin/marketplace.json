@@ -13,7 +13,7 @@
       "logo": "assets/logo.png",
       "category": "data",
       "tags": ["analytics", "saas", "revenue", "mrr", "churn"],
-      "skills": ["./skills/chartsy"]
+      "skills": ["./skills/chartsy", "./skills/chartsy-growth-loop"]
     }
   ]
 }

@@ -5,13 +5,20 @@ customers, goals, site traffic and signups. The numbers are live from
 [Chartsy](https://chartsy.app), which reads Stripe, Paddle, Polar, Lemon Squeezy, Creem,
 Freemius or a custom source.
 
-This repo bundles two things every agent install points at:
+This repo bundles what every agent install points at:
 
 - **The hosted Chartsy MCP server**: `https://mcp.chartsy.app/mcp`. It uses streamable
   HTTP and OAuth sign-in, and it's **read-only**. Nothing to install or run locally.
 - **The `chartsy` skill** ([`skills/chartsy/SKILL.md`](skills/chartsy/SKILL.md)). It
   teaches the agent which tool answers which question, how to keep tool calls to a minimum,
   and how to read the numbers correctly.
+- **The `chartsy-growth-loop` skill**
+  ([`skills/chartsy-growth-loop/SKILL.md`](skills/chartsy-growth-loop/SKILL.md)). It guides
+  your agent through a weekly loop: find which channels, campaigns and posts brought paying
+  customers who stayed, recommend where to focus, and write next week's posts with
+  UTM-tagged links. If you also connect a publishing tool's MCP (e.g. Postiz or Publer) to the same
+  agent, the skill tells it to save the posts there as drafts for your review. Chartsy itself
+  is read-only and never posts anything.
 
 > **Usage:** every tool call counts as one ChartsyAI question against your plan's monthly
 > allowance, the same budget as questions asked inside Chartsy. The skill steers agents to
@@ -111,11 +118,12 @@ questions like any other client, one per tool call, so schedule it sensibly. A d
 - *"How has MRR moved by plan over the last 6 months?"*
 - *"Which customers are at risk of churning?"*
 - *"Which traffic source converts best to signups?"*
+- *"Plan next week's X posts based on which channels brought paying customers last month."*
 - *"What did we refund in Q1, and which plan has the worst refund ratio?"*
 
 ## Tools
 
-All 18 tools are read-only and scoped to the accounts and sites your login owns.
+All 19 tools are read-only and scoped to the accounts and sites your login owns.
 
 | Area | Tools |
 | --- | --- |
@@ -123,6 +131,7 @@ All 18 tools are read-only and scoped to the accounts and sites your login owns.
 | Revenue | `get_mrr`, `get_mrr_by_plan`, `get_mrr_by_country`, `get_revenue_breakdown`, `get_refund_summary`, `get_goal_progress` |
 | Customers and churn | `get_churn_rate`, `get_new_subscribers`, `list_at_risk_customers`, `list_top_customers`, `get_customer_concentration` |
 | Site traffic | `list_tracked_sites`, `get_site_traffic`, `get_traffic_sources`, `get_monthly_events_usage` |
+| Marketing → revenue | `get_revenue_by_source` |
 | Accounts | `list_accounts` |
 
 ## Privacy
@@ -136,6 +145,7 @@ takes effect immediately. Policy: https://chartsy.app/privacy-policy
 | Path | Used by |
 | --- | --- |
 | `skills/chartsy/SKILL.md` | All skill-aware agents (single source of truth) |
+| `skills/chartsy-growth-loop/SKILL.md` | Weekly revenue-driven marketing loop: which channels brought paying customers, then UTM-tagged post drafts |
 | `.claude-plugin/`, `.mcp.json` | Claude Code plugin and marketplace |
 | `.cursor-plugin/` | Cursor plugin and marketplace |
 | `gemini-extension.json` | Gemini CLI extension |

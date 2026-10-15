@@ -84,7 +84,8 @@ or as a drop.
 | Goals / targets | `get_goal_progress` | Progress is measured from each goal's baseline, not from zero |
 | Which sites are tracked | `list_tracked_sites` | Gives `site_id`s for the traffic tools |
 | Visits, visitors, signups over time | `get_site_traffic` | `granularity` day/week/month only |
-| Where traffic / signups come from | `get_traffic_sources` | `by` = source, medium, campaign, country, referrer, landing_path |
+| Where traffic / signups come from | `get_traffic_sources` | `by` = source, medium, campaign, content, country, referrer, landing_path |
+| Which channels / campaigns / posts brought **paying** customers, their MRR and churn | `get_revenue_by_source` | `by` = source, medium, campaign, content; `touch` = last (default) or first. For a planning loop see the `chartsy-growth-loop` skill |
 | Tracked-event usage vs plan limit | `get_monthly_events_usage` | This month only |
 | Which accounts exist | `list_accounts` | Only needed when the login has several |
 
@@ -107,7 +108,8 @@ a different granularity, a `by` grouping it lacks, or more than its top K.
 - **Traffic tools are scoped to tracked sites, not accounts.** With no `site_id` they cover
   every site the login tracks, combined. A wrong `site_id` returns an empty list, not an
   error. If you get `[]` back for a `site_id`, check it against `list_tracked_sites` before
-  telling the user there was no traffic.
+  telling the user there was no traffic. (`get_revenue_by_source` is the exception: a
+  wrong `site_id` returns an error naming the problem.)
 
 ---
 
@@ -159,6 +161,9 @@ a different granularity, a `by` grouping it lacks, or more than its top K.
 **Marketing / channel question** ("which channel converts best", "where do signups come from")
 1. `get_traffic_sources` with `by="source"` (or `medium` / `campaign` / `landing_path`).
 2. Rank by signup rate *and* volume. A 50% rate on 4 visits isn't a channel.
+3. If the question is about *paying* customers or revenue ("which channel brings customers
+   who pay / stay"), use `get_revenue_by_source` instead. Treat `low_sample` groups as
+   inconclusive.
 
 **Week over week**
 1. `get_mrr_by_plan` with `granularity="week"` and `periods` around 8-12.
