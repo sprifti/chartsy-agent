@@ -23,33 +23,53 @@ Tag every link you publish or draft:
 Never reuse a utm_content value.
 
 ## Weekly loop
-1. If the user tracks more than one site, call list_tracked_sites and
+1. Ask for a one- or two-line product pitch before anything else: what the
+   product does, who it is for, and the main reason people buy. Chartsy only
+   knows numbers and UTM tags, never what the product is or what a post
+   said, so drafts written without a pitch come out generic. Skip the
+   question only if the pitch is already in this conversation or the
+   project's own docs. If the user only wants the report, no drafts, the
+   pitch isn't needed.
+2. If the user tracks more than one site, call list_tracked_sites and
    confirm which one.
-2. Call get_revenue_by_source for the last 30 days with by=source, then
+3. Call get_revenue_by_source for the last 30 days with by=source, then
    by=campaign. Use by=content only when posts aren't flagged low_sample.
-3. Check coverage. unmatched_signups counts everyone not linked to billing,
+4. Check coverage. unmatched_signups counts everyone not linked to billing,
    which includes every signup who simply never paid, so a high number is
    normal. The real gap is unattributed_paying_customers: new paying
    customers that match no signup. If it is more than about 20% of the
    paying customers in the results, say so first: conclusions may be
    incomplete.
-4. Judge carefully:
+5. Judge carefully:
    - Treat low_sample groups as inconclusive, never as winners or losers.
    - Rank by current_mrr and signup_to_paid_rate_percent. Only weigh
      retention_rate_percent for signups older than about 90 days.
    - Call get_traffic_sources for the same window to spot channels that
      bring traffic but no paying customers.
-5. Recommend 1-2 channels or themes to double down on and 1 to reduce,
+6. Recommend 1-2 channels or themes to double down on and 1 to reduce,
    each with the numbers behind it.
-6. Draft next week's posts for the recommended channels, modeled on what
-   worked, with every link UTM-tagged. Create them as drafts in the
-   publishing tool. Never publish or schedule live without the user's
-   explicit approval in this conversation.
-   - Publer: use a private draft (state draft_private) when the tool
-     offers it, so only the user sees it until they approve. Leave the
-     date off the draft unless the user asks for one (a dated draft shows
-     on the Publer calendar, an undated one waits in Drafts); give the
-     planned date in your reply instead.
+7. Find what the winning posts actually said. Chartsy only has their
+   utm_content slugs. If a publishing tool is connected, look the posts up
+   there by their tagged links; otherwise ask the user to paste or link one
+   or two of them. If neither is possible, say the drafts are based on the
+   pitch and the slug names only.
+8. Draft next week's posts for the recommended channels from the pitch and
+   the winning posts' angle, with every link UTM-tagged. Create them as
+   drafts in the publishing tool. Never publish or schedule live without
+   the user's explicit approval in this conversation.
+   - Publer: create every post as a draft (state "draft"). Never use
+     state "scheduled": with no date, Publer publishes it immediately.
+     Leave the date off the draft unless the user asks for one (a dated
+     draft shows on the Publer calendar, an undated one waits in Drafts);
+     give the planned date in your reply instead. Drafts are visible to
+     everyone in the Publer workspace.
+   - Postiz: create every post with type "draft" (schedulePostTool).
+     Never use "schedule" or "now"; "now" publishes immediately. Postiz
+     needs a date on every post, drafts included: use the planned date in
+     UTC and repeat it in your reply. Set shortLink to false so the UTM
+     tags stay readable. Write content as HTML. Put the tagged link in the
+     first postsAndComments item: later items become a thread on X,
+     Threads and Bluesky, and comments on LinkedIn and Facebook.
 
 ## Output
 1. Results table: group, signups, paying customers, signup-to-paid rate,

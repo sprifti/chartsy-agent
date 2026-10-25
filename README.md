@@ -48,7 +48,7 @@ claude mcp add --transport http -s user chartsy https://mcp.chartsy.app/mcp
 Then run `/mcp` to sign in.
 
 ### Cursor
-[Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=chartsy&config=eyJ1cmwiOiJodHRwczovL21jcC5jaGFydHN5LmFwcC9tY3AifQ==).
+[Add to Cursor](https://cursor.com/install-mcp?name=chartsy&config=eyJ1cmwiOiJodHRwczovL21jcC5jaGFydHN5LmFwcC9tY3AifQ==).
 Or go to **Settings → MCP → Add server**, choose type **HTTP**, and use URL
 `https://mcp.chartsy.app/mcp`.
 
@@ -60,6 +60,9 @@ in to Chartsy.
 ```bash
 gemini extensions install https://github.com/sprifti/chartsy-agent
 ```
+Then start `gemini` in a folder you trust (Gemini turns off MCP servers in untrusted
+folders), run `/mcp auth chartsy` to sign in, and check `/mcp` shows it connected. The
+extension brings the server and the skill. `npx skills add` alone installs only the skill.
 
 ### Codex, OpenClaw and other skill-aware agents
 ```bash
